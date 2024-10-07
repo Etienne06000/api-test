@@ -38,6 +38,6 @@ jobs:
           cd ${{ secrets.VPS_PATH_API_TEST }}
           # git config --global --add safe.directory $(pwd)  # Ajoute le répertoire courant comme "safe"
           git pull
-          .exec.sh
+          ./exec.sh
           composer install
           EOF
