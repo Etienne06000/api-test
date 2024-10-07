@@ -36,6 +36,6 @@ jobs:
           cd ${{ secrets.VPS_PATH_API_TEST }}
           # git config --global --add safe.directory $(pwd)  # Ajoute le répertoire courant comme "safe"
           git pull
-          docker compose exec api_test bash -c "mkdir -p /var/www/html/vendor && chown -R php83:php83 /var/www/html && chmod -R 775 /var/www/html"
-          docker compose run --rm -u php83 api_test bash -c "composer install"
+          docker compose exec api_test bash -c "mkdir -p /var/www/html/vendor && chown -R ${{ secrets.REMOTE_USER }}:${{ secrets.REMOTE_USER }} /var/www/html && chmod -R 775 /var/www/html"
+          docker compose run --rm -u ${{ secrets.REMOTE_USER }} api_test bash -c "composer install"
           EOF
