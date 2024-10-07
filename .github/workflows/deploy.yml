@@ -37,5 +37,5 @@ jobs:
           # git config --global --add safe.directory $(pwd)  # Ajoute le répertoire courant comme "safe"
           git pull
           whoami
-          docker compose run --rm api_test bash -c "composer install"
+          docker compose run --rm -u php83 api_test bash -c "composer install"
           EOF
