@@ -8,12 +8,11 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class IndexController extends AbstractController
 {
-    #[Route('/index', name: 'app_index')]
+    #[Route('', name: 'app_index')]
     public function index(): JsonResponse
     {
         return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/IndexController.php',
+            'message' => 'Hello Devback!',
         ]);
     }
 }
