@@ -35,6 +35,6 @@ jobs:
           ssh -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << 'EOF'
           cd ${{ secrets.VPS_PATH_API_TEST }}
           git pull 
-          # docker compose run --rm api_test bash -c "chown -R php83:php83 /var/www/html && composer install"
-          docker compose run --rm -u php83 api_test bash -c "chown -R php83:php83 /var/www/html && composer install"
+          docker compose up -d api_test
+          docker compose exec -u root api_test bash -c "chown -R php83:php83 /var/www/html && composer install"
           EOF
