@@ -74,10 +74,13 @@ RUN usermod -aG sudo php83
 RUN chmod 777 -R /var/log
 RUN chmod 777 -R /var/run
 
+
 RUN a2enmod rewrite remoteip 
 # COPY docker_conf/vhost.conf /etc/apache2/sites-enabled/000-default.conf
 COPY docker_conf/apache/vhost.conf /etc/apache2/sites-available/000-default.conf
 # COPY docker_conf/apache.conf /etc/apache2/apache2.conf
+
+RUN chown -R php83:php83 /var/www/html
 
 #--------------------------------------------------------------------------------
 # Define user 
