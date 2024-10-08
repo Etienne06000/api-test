@@ -34,8 +34,6 @@ jobs:
         run: |
           ssh -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << 'EOF'
           cd ${{ secrets.VPS_PATH_API_TEST }}
-          docker compose down
           git pull 
-          docker compose up -d --build
           docker compose run --rm -u php83 api_test bash -c "composer install"
           EOF

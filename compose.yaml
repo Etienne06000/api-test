@@ -6,7 +6,7 @@ services:
     container_name: api_test
     restart: always
     volumes:
-      - ./app:/var/www/html
+      - ./app:/var/www/html:delegated
       - ./docker_conf/apache/php.ini:/usr/local/etc/php/conf.d/app.ini
       - ./docker_conf/apache/vhost.conf:/etc/apache2/sites-available/000-default.conf
     labels:
