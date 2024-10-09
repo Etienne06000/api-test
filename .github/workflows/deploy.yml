@@ -36,5 +36,5 @@ jobs:
           cd ${{ secrets.VPS_PATH_API_TEST }}
           git pull 
           docker compose up -d api_test
-          docker compose exec -u root api_test bash -c "chown -R php83:php83 /var/www/html && composer install"
+          docker compose exec -u ${{ secrets.PRIVILEGE_USER }} api_test bash -c "chown -R ${{ secrets.DOCKER_USER }}:${{ secrets.DOCKER_USER }} /var/www/html && composer install"
           EOF
