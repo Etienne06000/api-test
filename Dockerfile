@@ -69,10 +69,22 @@ RUN command -v npm
 # Creating non root user
 # @see http://www.projectatomic.io/docs/docker-image-author-guidance/
 #--------------------------------------------------------------------------------
-RUN useradd -ms /bin/bash php83
-RUN usermod -aG sudo php83
+# RUN useradd -ms /bin/bash php83
+# RUN usermod -aG sudo php83
 RUN chmod 777 -R /var/log
 RUN chmod 777 -R /var/run
+
+ARG UID
+ARG GID
+
+# Créer le groupe avec le GID
+RUN groupadd -g ${GID} phpgroup
+
+# Créer l'utilisateur avec le bon UID et GID
+RUN useradd -u ${UID} -g phpgroup -ms /bin/bash php83
+
+# Donner les permissions au nouvel utilisateur pour /var/www/html
+RUN chown -R php83:phpgroup /var/www/html
 
 
 RUN a2enmod rewrite remoteip 
@@ -80,7 +92,7 @@ RUN a2enmod rewrite remoteip
 COPY docker_conf/apache/vhost.conf /etc/apache2/sites-available/000-default.conf
 # COPY docker_conf/apache.conf /etc/apache2/apache2.conf
 
-RUN chown -R php83:php83 /var/www/html
+# RUN chown -R php83:php83 /var/www/html
 
 #--------------------------------------------------------------------------------
 # Define user 
