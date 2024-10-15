@@ -37,5 +37,4 @@ jobs:
           git pull 
           docker compose up -d ${{ secrets.CONTAINER_NAME }}
           docker compose exec -u ${{ secrets.PRIVILEGE_USER }} ${{ secrets.CONTAINER_NAME }} bash -c "chown -R ${{ secrets.DOCKER_USER }}:${{ secrets.DOCKER_USER }} /var/www/html && composer install"
-          docker compose exec -u ${{ secrets.PRIVILEGE_USER }} ${{ secrets.CONTAINER_NAME }} bash -c "chown -R $(id -u):$(id -g) /var/www/html"
           EOF
