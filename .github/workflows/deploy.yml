@@ -35,4 +35,6 @@ jobs:
           ssh -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << 'EOF'
           cd ${{ secrets.VPS_PATH_API_TEST }}
           git pull 
+          docker compose up -d ${{ secrets.CONTAINER_NAME }}
+          docker compose exec ${{ secrets.CONTAINER_NAME }} bash -c "composer install"
           EOF
