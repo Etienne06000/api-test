@@ -37,6 +37,5 @@ jobs:
           git pull 
           docker compose up -d ${{ secrets.CONTAINER_NAME }}
           docker compose exec -u ${{ secrets.PRIVILEGE_USER }} ${{ secrets.CONTAINER_NAME }} bash -c "chown -R ${{ secrets.DOCKER_USER }}:${{ secrets.DOCKER_USER }} /var/www/html && composer install"
-          cd ..
-          sudo chown -R $(whoami) api_test
+          docker compose exec -u ${{ secrets.PRIVILEGE_USER }} ${{ secrets.CONTAINER_NAME }} bash -c "chown -R $(id -u ${{ secrets.REMOTE_USER }}):$(id -g ${{ secrets.REMOTE_USER }}) /var/www/html"
           EOF
