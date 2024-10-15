@@ -12,7 +12,7 @@ class IndexController extends AbstractController
     public function index(): JsonResponse
     {
         return $this->json([
-            'message' => 'Hello Devback 3<===3',
+            'message' => 'Hello Devback',
         ]);
     }
 }
